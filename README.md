@@ -1,11 +1,11 @@
-# Fudge Financial Application
-![Purple App Phone Mockup Sales Marketing Presentation](https://user-images.githubusercontent.com/57652434/199001948-8d681b19-7265-4130-aa06-f44fe890e271.png)
+# AppDay Cash King 
+![Purple App Phone Mockup Sales Marketing Presentation](https://user-images.githubusercontent.com/57652434/205579145-3016d39e-7d87-41b8-bcd4-102a9916b292.png)
 
 
 # Preview & Features
 | Application Preview | FEATURES |
 |-------------------- |------------- |
-| <img src="https://user-images.githubusercontent.com/57652434/199001447-2650d928-d2c3-4151-bc17-636fb7eba03d.gif" width="400" text-align = "center" >  | **✅ Flutter Used to Implement this App.** <br><br>  **✅ UI and Business Logics should be separated.** <br><br> **✅ App should work on both IOS and Android.** <br><br> **✅ Chart is animating from the right.**
+| <img src="https://user-images.githubusercontent.com/57652434/205579040-0264546b-b5fb-4dc5-8697-2bdaa031ad76.gif" width="400" text-align = "center" >  | **✅ Create project structure using get-cli.** <br><br> **✅ Flutter Used to Implement this App.** <br><br>  **✅ UI and Business Logics should be separated.** <br><br> **✅ App should work on both IOS and Android.** <br><br> 
 
 
 # How to Run App
