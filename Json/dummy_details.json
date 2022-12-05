@@ -1,0 +1,30 @@
+[
+  {
+    "eventId": "1142",
+    "title": "Install ",
+    "description": "Install the and Buy a subscription",
+    "payout": "\u20b93.00",
+    "isCompleted": false,
+    "payout_amt": 3,
+    "payout_currency": "\u20b9"
+  },
+  {
+    "eventId": "1143",
+    "title": "Engage ",
+    "description": "Play an audiobook",
+    "payout": "\u20b95.00",
+    "isCompleted": false,
+    "payout_amt": 5,
+    "payout_currency": "\u20b9"
+  },
+
+  {
+    "eventId": "1081",
+    "title": "Subscribe in just \u20b999 or \u20b949",
+    "description": "Steps to follow :-<br/><br/>\r\n1. Install the app.<br/>\r\n2. Register on the app.<br/>\r\n3. Make a deposit of just \u20b949 and subscribe to KUKU FM. <br/>\r\n<br/><br/>\r\nNote :- Only new users of KuKuFm will get the reward.\r\n<br/><br/>\r\n\u0905\u0928\u0941\u0938\u0930\u0923 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u0915\u0926\u092e :-<br/><br/>\r\n1. \u0910\u092a \u0907\u0902\u0938\u094d\u091f\u0949\u0932 \u0915\u0930\u0947\u0902\u0964<br/>\r\n2. \u0910\u092a \u092a\u0930 \u0930\u091c\u093f\u0938\u094d\u091f\u0930 \u0915\u0930\u0947\u0902\u0964<br/>\r\n3. \u092e\u093e\u0924\u094d\u0930 \u20b949 \u091c\u092e\u093e \u0915\u0930\u0947\u0902 \u0914\u0930 KUKU FM \u0915\u0940 \u0938\u0926\u0938\u094d\u092f\u0924\u093e \u0932\u0947\u0902\u0964 <br/>\r\n<br/><br/>\r\n\u0928\u094b\u091f :- KuKuFm \u0915\u0947 \u0938\u093f\u0930\u094d\u092b \u0928\u090f \u092f\u0942\u091c\u0930\u094d\u0938 \u0915\u094b \u0939\u0940 \u0907\u0928\u093e\u092e \u092e\u093f\u0932\u0947\u0917\u093e\u0964\r\n\r\n\r\n",
+    "payout": "\u20b970.00",
+    "isCompleted": true,
+    "payout_amt": 70,
+    "payout_currency": "\u20b9"
+  }
+]
