@@ -1,13 +1,39 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:appday_cash_king/Models/tasks_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' as root_bundle;
 import 'package:marquee/marquee.dart';
 
 import '../../../../../utils/assets_path.dart';
 import '../../../../../utils/colors.dart';
 
-class AllOffersScreen extends StatelessWidget {
+class AllOffersScreen extends StatefulWidget {
   const AllOffersScreen({
     Key key,
   }) : super(key: key);
+
+  @override
+  State<AllOffersScreen> createState() => _AllOffersScreenState();
+}
+
+class _AllOffersScreenState extends State<AllOffersScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  fetchDetails() async {
+    final response = await root_bundle.rootBundle.loadString("Json/dummy_tasks.json");
+    final responseData = json.decode(response) as List<dynamic>;
+    log('responseData: $responseData', name: "${context.widget}");
+    log('responseData.map: ${responseData.map((e) => TasksModel.fromJson(e))}',
+        name: "${context.widget}");
+    return responseData;
+    // return responseData.map((e) => TasksModel.fromJson(e));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,27 +81,33 @@ class AllOffersScreen extends StatelessWidget {
               child: SizedBox(
                 height: 200,
                 child: Expanded(
-                  child: ListView.builder(
-                    itemCount: 1,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          scrolablecard(
-                              imageUrl: AppAssets.image1,
-                              title: "Alto's Odysseyz",
-                              amount: "Get Rs. 230",
-                              userReview: "4,687 users"),
-                          scrolablecard(
-                              imageUrl: AppAssets.image3,
-                              title: "2 Player Games",
-                              amount: "Get Rs. 100",
-                              userReview: "4,687 users"),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                    child: FutureBuilder(
+                  future: fetchDetails(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData == false) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    log("snapshot Data: ${snapshot.data}");
+                    log("snapshot.data :${snapshot.data}", name: "${context.widget}");
+                    return ListView.builder(
+                      itemCount: 3,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        log("snapshot.data index :${snapshot.data[index]["title"]}",
+                            name: "${context.widget}");
+                        return Row(
+                          children: [
+                            scrolablecard(
+                                imageUrl: snapshot.data[index]["thumbnail"],
+                                title: "${snapshot.data[index]["title"]}",
+                                amount: "Get ${snapshot.data[index]["earned"]}",
+                                userReview: "${snapshot.data[index]["total_lead"]} users"),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                )),
               ),
             ),
             Row(children: [
@@ -93,21 +125,49 @@ class AllOffersScreen extends StatelessWidget {
             ]),
             listtiles(
                 imageUrl: AppAssets.icon1,
+                borderColor: AppColors.green,
                 title: "Alto's Odysseyz",
                 subtitle: "Get Rs. 230",
                 trailing: "4,687 users"),
             listtiles(
                 imageUrl: AppAssets.icon2,
+                borderColor: AppColors.purple,
                 title: "Alto's Odysseyz",
                 subtitle: "Get Rs. 230",
                 trailing: "4,687 users"),
             listtiles(
                 imageUrl: AppAssets.icon3,
+                borderColor: AppColors.blue,
                 title: "Alto's Odysseyz",
                 subtitle: "Get Rs. 230",
                 trailing: "4,687 users"),
             listtiles(
                 imageUrl: AppAssets.icon4,
+                borderColor: AppColors.pink,
+                title: "Alto's Odysseyz",
+                subtitle: "Get Rs. 230",
+                trailing: "4,687 users"),
+            listtiles(
+                imageUrl: AppAssets.icon1,
+                borderColor: AppColors.green,
+                title: "Alto's Odysseyz",
+                subtitle: "Get Rs. 230",
+                trailing: "4,687 users"),
+            listtiles(
+                imageUrl: AppAssets.icon2,
+                borderColor: AppColors.purple,
+                title: "Alto's Odysseyz",
+                subtitle: "Get Rs. 230",
+                trailing: "4,687 users"),
+            listtiles(
+                imageUrl: AppAssets.icon3,
+                borderColor: AppColors.blue,
+                title: "Alto's Odysseyz",
+                subtitle: "Get Rs. 230",
+                trailing: "4,687 users"),
+            listtiles(
+                imageUrl: AppAssets.icon4,
+                borderColor: AppColors.pink,
                 title: "Alto's Odysseyz",
                 subtitle: "Get Rs. 230",
                 trailing: "4,687 users"),
@@ -116,12 +176,16 @@ class AllOffersScreen extends StatelessWidget {
   }
 
   Widget listtiles(
-      {String imageUrl, String title = "", String subtitle = "", String trailing = ""}) {
+      {String imageUrl,
+      String title = "",
+      String subtitle = "",
+      String trailing = "",
+      Color borderColor}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Card(
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.green.shade300, width: 2),
+          side: BorderSide(color: borderColor ?? Colors.green.shade300, width: 2),
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: ListTile(
@@ -138,9 +202,9 @@ class AllOffersScreen extends StatelessWidget {
           ),
           subtitle: Text(
             subtitle,
-            style: TextStyle(color: Colors.blue),
+            style: const TextStyle(color: Colors.blue),
           ),
-          trailing: Text(trailing, style: TextStyle(color: Colors.amber)),
+          trailing: Text(trailing, style: const TextStyle(color: Colors.amber)),
         ),
       ),
     );
@@ -157,8 +221,7 @@ class AllOffersScreen extends StatelessWidget {
             height: 190,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
-                ///? !
+              child: Image.network(
                 imageUrl,
                 fit: BoxFit.cover,
               ),
@@ -173,14 +236,15 @@ class AllOffersScreen extends StatelessWidget {
               width: 190,
               height: 60,
               child: Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(fontSize: 12, color: Colors.white),
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                     Text(
                       amount,

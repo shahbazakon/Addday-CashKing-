@@ -1,4 +1,4 @@
-class DashboardModel {
+class DetailsModel {
   String taskId;
   String title;
   String thumbnail;
@@ -18,7 +18,7 @@ class DashboardModel {
   String ctaAction;
   CustomData customData;
 
-  DashboardModel(
+  DetailsModel(
       {this.taskId,
       this.title,
       this.thumbnail,
@@ -38,7 +38,7 @@ class DashboardModel {
       this.ctaAction,
       this.customData});
 
-  DashboardModel.fromJson(Map<String, dynamic> json) {
+  DetailsModel.fromJson(Map<String, dynamic> json) {
     taskId = json['taskId'];
     title = json['title'];
     thumbnail = json['thumbnail'];
@@ -52,7 +52,7 @@ class DashboardModel {
     earned = json['earned'];
     status = json['status'];
     isCompleted = json['isCompleted'];
-    brand = json['brand'] != null ? new Brand.fromJson(json['brand']) : null;
+    brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
     payoutAmt = json['payout_amt'];
     payoutCurrency = json['payout_currency'];
     ctaAction = json['ctaAction'];
@@ -60,7 +60,7 @@ class DashboardModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['taskId'] = taskId;
     data['title'] = title;
     data['thumbnail'] = thumbnail;
@@ -101,7 +101,7 @@ class Brand {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['brandId'] = brandId;
     data['title'] = title;
     data['logo'] = logo;

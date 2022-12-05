@@ -1,4 +1,4 @@
-class OffersModel {
+class TasksModel {
   String taskId;
   String title;
   String thumbnail;
@@ -18,7 +18,7 @@ class OffersModel {
   String ctaAction;
   CustomData customData;
 
-  OffersModel(
+  TasksModel(
       {this.taskId,
       this.title,
       this.thumbnail,
@@ -38,7 +38,7 @@ class OffersModel {
       this.ctaAction,
       this.customData});
 
-  OffersModel.fromJson(Map<String, dynamic> json) {
+  TasksModel.fromJson(Map<String, dynamic> json) {
     taskId = json['taskId'];
     title = json['title'];
     thumbnail = json['thumbnail'];
@@ -56,7 +56,7 @@ class OffersModel {
     payoutAmt = json['payout_amt'];
     payoutCurrency = json['payout_currency'];
     ctaAction = json['ctaAction'];
-    customData = json['custom_data'] != null ? new CustomData.fromJson(json['custom_data']) : null;
+    customData = json['custom_data'] != null ? CustomData.fromJson(json['custom_data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -77,11 +77,11 @@ class OffersModel {
     if (brand != null) {
       data['brand'] = brand.toJson();
     }
-    data['payout_amt'] = this.payoutAmt;
-    data['payout_currency'] = this.payoutCurrency;
-    data['ctaAction'] = this.ctaAction;
-    if (this.customData != null) {
-      data['custom_data'] = this.customData.toJson();
+    data['payout_amt'] = payoutAmt;
+    data['payout_currency'] = payoutCurrency;
+    data['ctaAction'] = ctaAction;
+    if (customData != null) {
+      data['custom_data'] = customData.toJson();
     }
     return data;
   }
@@ -102,9 +102,9 @@ class Brand {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['brandId'] = this.brandId;
-    data['title'] = this.title;
-    data['logo'] = this.logo;
+    data['brandId'] = brandId;
+    data['title'] = title;
+    data['logo'] = logo;
     return data;
   }
 }
@@ -123,10 +123,10 @@ class CustomData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['app_rating'] = this.appRating;
-    data['wall_url'] = this.wallUrl;
-    data['dominant_color'] = this.dominantColor;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['app_rating'] = appRating;
+    data['wall_url'] = wallUrl;
+    data['dominant_color'] = dominantColor;
     return data;
   }
 }
